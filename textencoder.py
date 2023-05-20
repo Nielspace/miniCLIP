@@ -58,11 +58,13 @@ def swish(x, beta=1):
 
 
 class BertLayerNorm(nn.Module):
-    def __init__(self, hidden_size, eps=1e-12):
+    def __init__(self, hidden_size, bias=True, eps=1e-12):
 
         super(BertLayerNorm, self).__init__()
         self.weight = nn.Parameter(torch.ones(hidden_size))
-        self.bias = nn.Parameter(torch.zeros(hidden_size))
+        if bias:
+          self.bias = nn.Parameter(torch.zeros(hidden_size))
+
         self.variance_epsilon = eps
 
     def forward(self, x):
@@ -74,7 +76,11 @@ class BertLayerNorm(nn.Module):
         normalized_x = (x - mean) / torch.sqrt(variance + self.variance_epsilon)
 
         # Apply scaling and shifting to the normalized tensor
-        output = self.weight * normalized_x + self.bias
+        if bias:
+            output = self.weight * normalized_x + self.bias
+        else:
+            output = self.weight * normalized_x
+            
         return output
 
 
