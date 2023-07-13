@@ -1,6 +1,6 @@
 # miniCLIP
 ## A smaller yet effective implementation of OpenAI CLIP
-![CLIP]("resources/CLIP.png")
+![CLIP](resources/CLIP.png)
 
 # References
 1. [Reproducible scaling laws for contrastive language-image learning](https://github.com/mlfoundations/open_clip)
