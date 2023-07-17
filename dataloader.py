@@ -20,7 +20,6 @@ df['id'] = ids
 df.to_csv("captions.csv", index=False)  # For multiple caption
 df.head()
 ​
-​
 class CFG:
     debug = False
     image_path = "../../images"
